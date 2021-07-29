@@ -1,8 +1,9 @@
 package com.zekeriyafince.SpringHibernateTask.api.controller;
 
+import com.zekeriyafince.SpringHibernateTask.core.DataResult;
 import com.zekeriyafince.SpringHibernateTask.dto.TaskUpdateDto;
-import com.zekeriyafince.SpringHibernateTask.dto.TaskViewDto;
 import com.zekeriyafince.SpringHibernateTask.service.abstracts.TaskService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,9 +29,9 @@ public class TasksController {
     }
 
     @PutMapping("tasks/{id}")
-    public ResponseEntity<TaskViewDto> updateUser(@PathVariable("id") Long id, @RequestBody TaskUpdateDto taskUpdateDto) {
-        final TaskViewDto task = taskService.updateTask(id, taskUpdateDto);
-        return ResponseEntity.ok(task);
+    public ResponseEntity<?> updateUser(@Valid @PathVariable("id") Long id, @RequestBody TaskUpdateDto taskUpdateDto) {
+        final DataResult<?> dataResult = taskService.updateTask(id, taskUpdateDto);
+        return ResponseEntity.ok(dataResult);
     }
 
 }
