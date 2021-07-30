@@ -13,4 +13,6 @@ public interface TaskService {
     DataResult<?> updateTask(Long id, TaskUpdateDto taskUpdateDto);
 
     DataResult<?> getTaskById(Long id);
+    
+    DataResult<?> getTasks();
 }

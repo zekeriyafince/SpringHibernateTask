@@ -41,4 +41,10 @@ public class TasksController {
         return ResponseEntity.ok(dataResult);
     }
 
+    @GetMapping("tasks")
+    public ResponseEntity<?> getTasks() {
+        final DataResult<?> dataResult = taskService.getTasks();
+        return ResponseEntity.ok(dataResult);
+    }
+
 }

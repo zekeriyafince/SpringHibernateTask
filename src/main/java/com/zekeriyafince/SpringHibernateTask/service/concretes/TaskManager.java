@@ -7,8 +7,11 @@ import com.zekeriyafince.SpringHibernateTask.dto.TaskViewDto;
 import com.zekeriyafince.SpringHibernateTask.entity.concretes.Task;
 import com.zekeriyafince.SpringHibernateTask.repository.abstracts.TaskRepository;
 import com.zekeriyafince.SpringHibernateTask.service.abstracts.TaskService;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -56,6 +59,12 @@ public class TaskManager implements TaskService {
         Task task = taskRepository.getById(id);
 
         return new DataResult<TaskViewDto>(TaskViewDto.of(task));
+    }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public DataResult<?> getTasks() {
+        return new DataResult<List<TaskViewDto>>(this.taskRepository.findAll().stream().map(TaskViewDto::of).collect(Collectors.toList()));
     }
 
 }
