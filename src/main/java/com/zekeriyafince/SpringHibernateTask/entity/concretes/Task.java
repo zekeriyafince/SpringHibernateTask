@@ -31,4 +31,9 @@ public class Task {
     @Column(name = "priority")
     private Long priority;
 
+    public Task(String description, Long priority) {
+        this.description = description;
+        this.priority = priority;
+    }
+
 }
