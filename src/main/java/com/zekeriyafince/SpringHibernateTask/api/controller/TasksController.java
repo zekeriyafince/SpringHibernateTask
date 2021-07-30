@@ -32,7 +32,7 @@ public class TasksController {
     }
 
     @PutMapping("tasks/{id}")
-    public ResponseEntity<?> updateUser(@Valid @PathVariable("id") Long id, @RequestBody TaskUpdateDto taskUpdateDto) {
+    public ResponseEntity<?> updateTask(@Valid @PathVariable("id") Long id, @RequestBody TaskUpdateDto taskUpdateDto) {
         final DataResult<?> dataResult = taskService.updateTask(id, taskUpdateDto);
         return ResponseEntity.ok(dataResult);
     }
