@@ -2,6 +2,7 @@ package com.zekeriyafince.SpringHibernateTask.service.concretes;
 
 import com.zekeriyafince.SpringHibernateTask.core.DataResult;
 import com.zekeriyafince.SpringHibernateTask.core.GenericResponse;
+import com.zekeriyafince.SpringHibernateTask.dto.TaskCreateDto;
 import com.zekeriyafince.SpringHibernateTask.dto.TaskUpdateDto;
 import com.zekeriyafince.SpringHibernateTask.dto.TaskViewDto;
 import com.zekeriyafince.SpringHibernateTask.entity.concretes.Task;
@@ -65,6 +66,12 @@ public class TaskManager implements TaskService {
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public DataResult<?> getTasks() {
         return new DataResult<List<TaskViewDto>>(this.taskRepository.findAll().stream().map(TaskViewDto::of).collect(Collectors.toList()));
+    }
+    
+    @Override
+    public DataResult<?> createTask(TaskCreateDto taskCreateDto) {
+        final Task task = this.taskRepository.save(new Task(taskCreateDto.getDescription(), taskCreateDto.getPriority()));
+        return new DataResult<TaskViewDto>(TaskViewDto.of(task));
     }
 
 }
