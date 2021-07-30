@@ -11,6 +11,8 @@ import lombok.Data;
 @Data
 public class TaskUpdateDto implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private String description;
 
     private Long priority;

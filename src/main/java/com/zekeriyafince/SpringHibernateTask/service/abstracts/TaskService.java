@@ -2,7 +2,6 @@ package com.zekeriyafince.SpringHibernateTask.service.abstracts;
 
 import com.zekeriyafince.SpringHibernateTask.core.DataResult;
 import com.zekeriyafince.SpringHibernateTask.dto.TaskUpdateDto;
-import com.zekeriyafince.SpringHibernateTask.dto.TaskViewDto;
 
 /**
  *
@@ -12,4 +11,6 @@ import com.zekeriyafince.SpringHibernateTask.dto.TaskViewDto;
 public interface TaskService {
 
     DataResult<?> updateTask(Long id, TaskUpdateDto taskUpdateDto);
+
+    DataResult<?> getTaskById(Long id);
 }

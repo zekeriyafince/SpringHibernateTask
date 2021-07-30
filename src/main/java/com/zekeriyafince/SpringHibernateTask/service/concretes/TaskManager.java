@@ -44,6 +44,17 @@ public class TaskManager implements TaskService {
 
         final Task updatedTask = taskRepository.save(task);
 
+        return new DataResult<TaskViewDto>(TaskViewDto.of(updatedTask));
+    }
+
+    @Override
+    public DataResult<?> getTaskById(Long id) {
+        boolean isExistTask = this.taskRepository.existsById(id);
+        if (!isExistTask) {
+            return new DataResult<GenericResponse>(new GenericResponse("Cannot find task with given id", 404));
+        }
+        Task task = taskRepository.getById(id);
+
         return new DataResult<TaskViewDto>(TaskViewDto.of(task));
     }
 

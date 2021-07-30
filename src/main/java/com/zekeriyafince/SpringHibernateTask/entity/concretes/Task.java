@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "tasks")
-public class Task implements Serializable {
+public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

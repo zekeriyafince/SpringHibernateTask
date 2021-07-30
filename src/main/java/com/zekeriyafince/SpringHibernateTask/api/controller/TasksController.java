@@ -6,6 +6,7 @@ import com.zekeriyafince.SpringHibernateTask.service.abstracts.TaskService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +32,12 @@ public class TasksController {
     @PutMapping("tasks/{id}")
     public ResponseEntity<?> updateUser(@Valid @PathVariable("id") Long id, @RequestBody TaskUpdateDto taskUpdateDto) {
         final DataResult<?> dataResult = taskService.updateTask(id, taskUpdateDto);
+        return ResponseEntity.ok(dataResult);
+    }
+
+    @GetMapping("tasks/{id}")
+    public ResponseEntity<?> getTaskById(@Valid @PathVariable("id") Long id) {
+        final DataResult<?> dataResult = taskService.getTaskById(id);
         return ResponseEntity.ok(dataResult);
     }
 
